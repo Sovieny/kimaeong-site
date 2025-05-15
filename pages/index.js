@@ -1,39 +1,36 @@
 export default function Home() {
   return (
-    <main className="min-h-screen bg-gray-50 text-gray-800 font-sans p-6">
-      <div className="max-w-3xl mx-auto">
-        <header className="mb-10">
-          <h1 className="text-4xl font-bold mb-2">김애옹 쉼터</h1>
-          <p className="text-lg text-gray-600">고양이처럼 느긋하게, 우리만의 공간.</p>
-        </header>
+    <main className="min-h-screen bg-pink-50 text-gray-800 font-sans">
+      <header className="bg-white shadow-md sticky top-0 z-10">
+        <nav className="max-w-4xl mx-auto px-4 py-3 flex justify-between items-center">
+          <h1 className="text-2xl font-bold text-pink-500">김애옹 본거지</h1>
+          <ul className="flex space-x-4 text-gray-700 font-medium">
+            <li><a href="#" className="hover:text-pink-600">홈</a></li>
+            <li><a href="#" className="hover:text-pink-600">소개</a></li>
+            <li><a href="#" className="hover:text-pink-600">사진첩</a></li>
+            <li><a href="#" className="hover:text-pink-600">방명록</a></li>
+          </ul>
+        </nav>
+      </header>
 
-        <section className="space-y-6">
-          <div className="bg-white p-5 rounded-2xl shadow">
-            <h2 className="text-2xl font-semibold mb-2">📌 사이트 소개</h2>
-            <p>
-              김애옹 쉼터는 아늑한 커뮤니티를 준비하는 공간입니다. <br/>
-              지금은 정적 사이트로 운영되지만, 앞으로는 회원제 소셜 기능, 실시간 채팅, 자료 공유도 도입할 예정이에요.
-            </p>
-          </div>
+      <section className="max-w-3xl mx-auto p-6 space-y-6">
+        <div className="bg-white p-6 rounded-2xl shadow-md">
+          <h2 className="text-xl font-semibold mb-2 text-pink-600">🎀 사이트 소개</h2>
+          <p>
+            이곳은 김애옹의 본거지이며, 누구나 고양이처럼 느긋하게 쉬어갈 수 있는 공간입니다.<br/>
+            지금은 관리자 수동 편집이 필요하지만, 앞으로는 사이트 내에서 직접 글을 수정하거나 관리할 수 있는 기능도 고려 중이에요.
+          </p>
+        </div>
 
-          <div className="bg-white p-5 rounded-2xl shadow">
-            <h2 className="text-2xl font-semibold mb-2">🧭 로드맵</h2>
-            <ul className="list-disc ml-5 space-y-1">
-              <li>1단계: 사이트 소개 및 커뮤니티 방향 공유</li>
-              <li>2단계: 글쓰기 / 댓글 기능 도입</li>
-              <li>3단계: 그룹별 채팅 / AI 보조 도입</li>
-              <li>4단계: 프로필 / 좋아요 / 업로드 등 소셜 기능</li>
-            </ul>
-          </div>
-
-          <div className="bg-white p-5 rounded-2xl shadow">
-            <h2 className="text-2xl font-semibold mb-2">📬 연락</h2>
-            <p>
-              운영자에게 문의하고 싶으시다면 <code className="bg-gray-100 px-1">kimaeong@yourdomain.com</code> 으로 연락 주세요.
-            </p>
-          </div>
-        </section>
-      </div>
+        <div className="bg-white p-6 rounded-2xl shadow-md">
+          <h2 className="text-xl font-semibold mb-2 text-pink-600">📌 향후 계획</h2>
+          <ul className="list-disc ml-6 space-y-1">
+            <li>사진첩 기능 추가 예정</li>
+            <li>방명록 및 AI 보조 댓글 기능 준비 중</li>
+            <li>사용자 프로필 기능 구상 중</li>
+          </ul>
+        </div>
+      </section>
     </main>
   );
 }
