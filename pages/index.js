@@ -1,27 +1,46 @@
-import Link from 'next/link';
+import { useEffect, useState } from 'react';
+import Header from './components/Header';
 
 export default function Home() {
-  return (
-    <main className="min-h-screen bg-pink-50 text-gray-800 font-sans">
-      <header className="bg-white shadow sticky top-0 z-10">
-        <div className="max-w-5xl mx-auto px-4 py-3 flex justify-between items-center">
-          <h1 className="text-2xl font-bold text-pink-500">김애옹 본거지</h1>
-          <nav className="space-x-4 text-sm text-gray-700 font-medium">
-            <Link href="/">홈</Link>
-            <Link href="/about">소개</Link>
-            <Link href="#">사진첩</Link>
-            <Link href="#">방명록</Link>
-          </nav>
-        </div>
-      </header>
+  const [isAdmin, setIsAdmin] = useState(false);
+  const [editing, setEditing] = useState(false);
+  const [text, setText] = useState("이곳은 김애옹의 본거지이며, 누구나 고양이처럼 느긋하게 쉬어갈 수 있는 공간입니다.");
 
-      <section className="max-w-3xl mx-auto p-6 space-y-6">
-        <div className="bg-white p-6 rounded-2xl shadow-md">
-          <h2 className="text-xl font-semibold mb-2 text-pink-600">🎀 사이트 소개</h2>
-          <p>
-            이곳은 김애옹의 본거지이며, 누구나 고양이처럼 느긋하게 쉬어갈 수 있는 공간입니다.<br />
-            지금은 관리자 수동 편집이 필요하지만, 앞으로는 사이트 내에서 직접 글을 수정하거나 관리할 수 있는 기능도 고려 중이에요.
-          </p>
+  useEffect(() => {
+    if (localStorage.getItem("isAdmin") === "true") setIsAdmin(true);
+  }, []);
+
+  const save = () => {
+    setEditing(false);
+    localStorage.setItem("homeText", text);
+  };
+
+  useEffect(() => {
+    const saved = localStorage.getItem("homeText");
+    if (saved) setText(saved);
+  }, []);
+
+  const logout = () => {
+    localStorage.removeItem("isAdmin");
+    location.reload();
+  };
+
+  return (
+    <main className="min-h-screen bg-pink-50">
+      <Header isAdmin={isAdmin} onLogout={logout} />
+      <section className="max-w-3xl mx-auto p-6">
+        <div className="bg-white p-6 rounded-xl shadow">
+          <h2 className="text-lg font-bold text-pink-500 mb-2">🎀 사이트 소개</h2>
+          {editing ? (
+            <textarea value={text} onChange={e => setText(e.target.value)} className="w-full border p-2" rows={4} />
+          ) : (
+            <p>{text}</p>
+          )}
+          {isAdmin && (
+            <button onClick={editing ? save : () => setEditing(true)} className="mt-3 text-sm text-pink-600 border px-2 py-1 rounded">
+              {editing ? "저장" : "✏️ 수정"}
+            </button>
+          )}
         </div>
       </section>
     </main>
